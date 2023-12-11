@@ -23,9 +23,11 @@ $products = $show->getProducts();
 
             ?>
             <tr>
+                <td><?= $row["id"]; ?></td>
                 <td><?= $row["name"]; ?></td>
                 <td><?=  $row["description"]; ?></td>
                 <td><?= $row["price"]; ?></td>
+                <a href="delete.php?id=<?= $row["id"] ?>">delete</a>
             </tr>
             <?php
         }
