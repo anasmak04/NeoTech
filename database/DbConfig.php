@@ -25,9 +25,6 @@ class DbConfig {
         if ($this->db->connect_error) {
             die("Connection failed: " . $this->db->connect_error);
         }
-        else{
-            echo "works";
-        }
 
         return $this->db;
     }

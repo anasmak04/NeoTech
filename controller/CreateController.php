@@ -32,7 +32,8 @@ class CreateController {
 
         $stmt->close();
 
-        header("Location: show.php");
+        $path = "../view/show.php";
+        header("Location: ".$path);
         exit();
     }
 }
