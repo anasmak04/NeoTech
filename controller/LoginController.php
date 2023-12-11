@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 use entities\Product;
 use entities\User;
 
@@ -26,9 +27,17 @@ class LoginController{
         if($result->num_rows == 1){
             $row = $result->fetch_assoc();
             $password1= $row['password'];
+            $_SESSION["role"] = $row["id_role"];
             if(password_verify($password,$password1)){
-                $path = "../view/show.php";
-                header("Location: ".$path);
+               if($_SESSION["role"] == 1){
+                   $path = "../view/show.php";
+                   header("Location: ".$path);
+               }
+
+               else{
+                   $path = "../view/show.php";
+                   header("Location: ".$path);
+               }
             }
         }
     }

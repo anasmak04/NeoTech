@@ -1,13 +1,13 @@
 <?php
 
 require "../controller/ShowController.php";
-
 $show = new ShowController();
 $products = [];
 $products = $show->getProducts();
-
+session_start();
 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -34,7 +34,23 @@ $products = $show->getProducts();
 <body>
 
 <h2>Product Table</h2>
+<?php
+
+if(isset($_SESSION["role"])){
+    if($_SESSION["role"] === 1){
+        ?>
+
 <a href="./add.php"> Add Product</a>
+
+<?php
+    }
+}
+
+?>
+
+
+
+
 <table/>
 <tr>
     <th>Id</th>
@@ -53,8 +69,21 @@ $products = $show->getProducts();
     <td><?= $row["name"]; ?></td>
     <td><?=  $row["description"]; ?></td>
     <td><?= $row["price"]; ?></td>
-    <td> <a href="delete.php?id=<?= $row["id"] ?>">delete</a>
-        <a href="Edit.php?id=<?= $row["id"] ?>">edit</a></td>
+    <td>
+        <?php
+
+        if (isset($_SESSION['role'])) {
+            if ($_SESSION['role'] === 1) {
+                ?>
+
+                <a href="delete.php?id=<?= $row["id"] ?>">delete</a>
+                <a href="Edit.php?id=<?= $row["id"] ?>">edit</a>
+
+                <?php
+            }
+        }
+        ?>
+    </td>
 </tr>
 <?php
 }
