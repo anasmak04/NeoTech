@@ -2,8 +2,11 @@
 <html>
 <head>
     <title>Add</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
 </head>
 <body>
+
+    <h2>Add New Product</h2>
 
 <form action="../controller/CreateController.php" method="post">
     <input type="text" name="name" placeholder="name" />

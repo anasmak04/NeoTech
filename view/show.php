@@ -13,23 +13,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
+    <link rel="stylesheet" href="../public/css/styles.css">
 </head>
 <body>
 
@@ -40,7 +24,7 @@ if(isset($_SESSION["role"])){
     if($_SESSION["role"] === 1){
         ?>
 
-<a href="./add.php"> Add Product</a>
+<a class="add" href="./add.php"> Add Product</a>
 
 <?php
     }
@@ -76,8 +60,8 @@ if(isset($_SESSION["role"])){
             if ($_SESSION['role'] === 1) {
                 ?>
 
-                <a href="delete.php?id=<?= $row["id"] ?>">delete</a>
-                <a href="Edit.php?id=<?= $row["id"] ?>">edit</a>
+                <a href="delete.php?id=<?= $row["id"] ?>">Delete</a>
+                <a href="Edit.php?id=<?= $row["id"] ?>">Edit</a>
 
                 <?php
             }
