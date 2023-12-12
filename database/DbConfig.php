@@ -5,7 +5,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
-
 class DbConfig {
     protected $username;
     protected $password;
@@ -20,6 +19,8 @@ class DbConfig {
         $this->servername = $_ENV["DB_servername"];
     }
 
+
+
     public function getConnection() {
         $this->db = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         if ($this->db->connect_error) {
@@ -29,8 +30,3 @@ class DbConfig {
         return $this->db;
     }
 }
-
-
-
-
-

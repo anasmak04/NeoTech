@@ -17,7 +17,7 @@ class LoginController{
 
 
     public function LogToAccount($username,$password){
-    $product = new User(null,$username,$password,null);
+    $product = User::CreateInstance(null,$username,$password,null);
     $sql = "SELECT *  FROM user WHERE username = ?";
 
     $stmt = $this->database->prepare($sql);

@@ -18,7 +18,7 @@ class CreateController {
     }
 
     public function addProduct($name, $description, $price) {
-        $product = new Product(null, $name, $description, $price);
+        $product = Product::createInstance(null,$name,$description,$price);
 
         $stmt = $this->database->prepare("INSERT INTO product (name, description, price) VALUES (?, ?, ?)");
 

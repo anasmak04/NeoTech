@@ -2,6 +2,8 @@
 
 namespace entities;
 
+use http\Exception\InvalidArgumentException;
+
 class Product
 {
     private $id;
@@ -9,79 +11,60 @@ class Product
     private $description;
     private $price;
 
-    /**
-     * @param $id
-     * @param $name
-     * @param $description
-     * @param $price
-     */
-    public function __construct($id, $name, $description, $price)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->price = $price;
+
+    public static function createInstance($id, $name, $description, $price){
+    $product = new Product();
+    $product->id = $id;
+    $product->name = $name;
+    $product->description = $description;
+    $product->price = $price;
+    if($name == null || empty($name)) throw new InvalidArgumentException("name cannot be empty or null");
+    if($description == null || empty($description)) throw new InvalidArgumentException("description cannot be empty or null");
+        return $product;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
+
     public function setId($id)
     {
         $this->id = $id;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
     public function setName($name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getDescription()
     {
         return $this->description;
     }
 
-    /**
-     * @param mixed $description
-     */
+
     public function setDescription($description)
     {
         $this->description = $description;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getPrice()
     {
         return $this->price;
     }
 
-    /**
-     * @param mixed $price
-     */
+
     public function setPrice($price)
     {
         $this->price = $price;
