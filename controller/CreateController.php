@@ -22,9 +22,10 @@ class CreateController {
 
         $stmt = $this->database->prepare("INSERT INTO product (name, description, price) VALUES (?, ?, ?)");
 
-
         $name1 = $product->getName();
+
         $description1 = $product->getDescription();
+
         $price1 = $product->getPrice();
 
         $stmt->bind_param("ssd", $name1, $description1, $price1);

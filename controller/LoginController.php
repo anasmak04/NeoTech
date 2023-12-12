@@ -6,6 +6,7 @@ use entities\User;
 
 require_once "../database/DbConfig.php";
 require_once "../entities/User.php";
+
 class LoginController{
     private $database;
 

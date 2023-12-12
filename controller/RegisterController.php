@@ -24,8 +24,24 @@ class RegisterController{
         if($stmt){
             $stmt->bind_param("siss", $fullname, $id_role ,$username,$hashedPwd);
             $stmt->execute();
-            $path = "../view/Login.php";
-            header("Location: ".$path);
+            $id2 = $this->database->insert_id;
+
+
+            $sql2 = "INSERT INTO `User_Role`(`user_id`, `role_id`) VALUES (?,2)";
+            $stmt2 = $this->database->prepare($sql2);
+
+            if($stmt2){
+                $stmt2->bind_param("i", $id2);
+                $stmt2->execute();
+
+                $path = "../view/Login.php";
+                header("Location: ".$path);
+            }
+
+            else {
+                echo "error";
+            }
+
         }
 
     }
