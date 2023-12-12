@@ -6,12 +6,12 @@ CREATE TABLE user (
     username VARCHAR(50),
     password VARCHAR(255),
     confirmPwd VARCHAR(255)
-)
+);
 
 CREATE TABLE role(
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50)
-)
+);
 
 CREATE TABLE product (
      id INT PRIMARY KEY AUTO_INCREMENT,
