@@ -11,7 +11,6 @@ class Product
     private $description;
     private $price;
 
-
     public static function createInstance($id, $name, $description, $price){
     $product = new Product();
     $product->id = $id;

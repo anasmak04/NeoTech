@@ -14,9 +14,13 @@ class ShowController {
     public function getProducts(){
         $sql = "SELECT * FROM product";
         $stmt = $this->database->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result;
+       if($stmt){
+           $stmt->execute();
+           $result = $stmt->get_result();
+           return $result;
+       } else {
+           echo "Eroor in show";
+       }
     }
 
 
