@@ -21,7 +21,7 @@ class ProductImplementation implements ProductInterface {
     }
 
 
-    public function create($name, $description, $price){
+    public function save($name, $description, $price){
 
         $product = Product::createInstance(null,$name,$description,$price);
 
@@ -31,7 +31,7 @@ class ProductImplementation implements ProductInterface {
         $description1 = $product->getDescription();
         $price1 = $product->getPrice();
 
-        $stmt->bind_param("ssd", $name1, $description2, $price2);
+        $stmt->bind_param("ssd", $name1, $description1, $price1);
         $stmt->execute();
         $stmt->close();
         $path = "../view/show.php";
@@ -83,7 +83,7 @@ if(isset($_POST['submit'])) {
     $description = $_POST['description'];
     $price = $_POST['price'];
     $productimplementation  = new ProductImplementation();
-    $productimplementation->create($name, $description, $price);
+    $productimplementation->save($name, $description, $price);
 }
 
 if (isset($_POST['submit'])) {
