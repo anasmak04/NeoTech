@@ -4,8 +4,7 @@ namespace entities;
 
 use http\Exception\InvalidArgumentException;
 
-class Product
-{
+class Product{
     private $id;
     private $name;
     private $description;

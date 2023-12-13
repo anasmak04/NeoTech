@@ -36,7 +36,7 @@ if(isset($_GET["id"])) {
 </head>
 <body>
 <h1>Edit User</h1>
-<form action="../controller/EditController.php" method="post">
+<form action="../controller/ProductImplementation.php" method="post">
     <input type="hidden" name="id" value="<?= $id ?>">
     <input type="text" name="name" placeholder="Name" value="<?= $name ?>">
     <input type="text" name="description" placeholder="Description" value="<?= $description ?>">

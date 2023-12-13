@@ -23,6 +23,7 @@ class User{
         $user->password = $password;
         $user->confirmPwd = $confirmPwd;
 
+
         if($username == null || empty($username)) throw new InvalidArgumentException("username cannot be empty or null");
         if($password == null || empty($password)) throw new InvalidArgumentException("password cannot be empty or null");
 

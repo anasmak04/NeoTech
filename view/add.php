@@ -8,7 +8,7 @@
 
     <h2>Add New Product</h2>
 
-<form action="../controller/CreateController.php" method="post">
+<form action="../controller/ProductImplementation.php" method="post">
     <input type="text" name="name" placeholder="name" />
     <input type="text" name="description" placeholder="description" />
     <input type="number" name="price" placeholder="price" />

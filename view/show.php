@@ -1,9 +1,12 @@
 <?php
 
-require "../controller/ShowController.php";
-$show = new ShowController();
+use controller\ProductImplementation;
+
+require "../controller/ProductImplementation.php";
+
+$show = new ProductImplementation();
 $products = [];
-$products = $show->getProducts();
+$products = $show->findAll();
 session_start();
 
 ?>
