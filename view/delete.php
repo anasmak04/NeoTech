@@ -1,6 +1,5 @@
 <?php
 
-use controller\ProductImplementation;
 
 require_once __DIR__ . "/../controller/ProductImplementation.php";
 

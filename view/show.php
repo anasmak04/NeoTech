@@ -1,6 +1,5 @@
 <?php
 
-use controller\ProductImplementation;
 
 require "../controller/ProductImplementation.php";
 

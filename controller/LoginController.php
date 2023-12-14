@@ -17,31 +17,32 @@ class LoginController{
 
 
     public function LogToAccount($username,$password){
-    $product = User::CreateInstance(null,$username,$password,null);
-    $sql = "SELECT *  FROM user WHERE username = ?";
 
-    $stmt = $this->database->prepare($sql);
-    if($stmt){
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if($result->num_rows == 1){
-            $row = $result->fetch_assoc();
-            $password1= $row['password'];
-            $_SESSION["role"] = $row["id_role"];
-            if(password_verify($password,$password1)){
-               if($_SESSION["role"] == 1){
-                   $path = "../view/show.php";
-                   header("Location: ".$path);
-               }
 
-               else{
-                   $path = "../view/show.php";
-                   header("Location: ".$path);
-               }
+        $sql = "SELECT *  FROM user WHERE username = ?";
+
+        $stmt = $this->database->prepare($sql);
+        if($stmt){
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if($result->num_rows == 1){
+                $row = $result->fetch_assoc();
+                $password1= $row['password'];
+                $_SESSION["role"] = $row["id_role"];
+                if(password_verify($password,$password1)){
+                    if($_SESSION["role"] == 1){
+                        $path = "../view/show.php";
+                        header("Location: ".$path);
+                    }
+
+                    else{
+                        $path = "../view/show.php";
+                        header("Location: ".$path);
+                    }
+                }
             }
         }
-    }
     }
 }
 

@@ -12,7 +12,7 @@
     <input type="text" name="name" placeholder="name" />
     <input type="text" name="description" placeholder="description" />
     <input type="number" name="price" placeholder="price" />
-    <button name="submit">save</button>
+    <button type="submit" name="add_submit">save</button>
 </form>
 
 

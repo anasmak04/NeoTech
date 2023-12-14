@@ -1,17 +1,12 @@
 <?php
 
-namespace controller;
 
-use DbConfig;
+use App\dao\ProductInterface;
 use entities\Product;
-use ProductInterface;
 
 require_once "../database/DbConfig.php";
 require_once "../entities/Product.php";
-require_once __DIR__ . "../dao/ProductInterface.php";
-
-
-
+require_once "../dao/ProductInterface.php";
 class ProductImplementation implements ProductInterface {
     private $database;
 
@@ -21,17 +16,12 @@ class ProductImplementation implements ProductInterface {
     }
 
 
-    public function save($name, $description, $price){
-
-        $product = Product::createInstance(null,$name,$description,$price);
-
+    public function save($Product){
+        $name = $Product->getName();
+        $description = $Product->getDescription();
+        $price = $Product->getPrice();
         $stmt = $this->database->prepare("INSERT INTO product (name, description, price) VALUES (?, ?, ?)");
-
-        $name1 = $product->getName();
-        $description1 = $product->getDescription();
-        $price1 = $product->getPrice();
-
-        $stmt->bind_param("ssd", $name1, $description1, $price1);
+        $stmt->bind_param("ssd", $name, $description, $price);
         $stmt->execute();
         $stmt->close();
         $path = "../view/show.php";
@@ -42,16 +32,31 @@ class ProductImplementation implements ProductInterface {
 
 
 
-    public function edit($id, $name, $description, $price){
+    public function edit($Product){
+
+        $id = $Product->getId();
+        $name = $Product->getName();
+        $description = $Product->getDescription();
+        $price = $Product->getPrice();
 
         $sql = "UPDATE `product` SET `name`=?, `description`=?, `price`=? WHERE `id`=?";
-
         $stmt = $this->database->prepare($sql);
-        $stmt->bind_param("sssi", $name, $description, $price, $id);
-        $stmt->execute();
-        $stmt->close();
-        $path = "../view/show.php";
-        header("Location: ".$path);
+        $stmt->bind_param("ssii", $name, $description, $price, $id);
+
+
+        if($stmt){
+
+            $stmt->execute();
+            $stmt->close();
+
+            $path = "../view/show.php";
+            header("Location: ".$path);
+            echo "works";
+        }
+
+        else {
+            echo "error";
+        }
         exit();
     }
 
@@ -78,19 +83,23 @@ class ProductImplementation implements ProductInterface {
 }
 
 
-if(isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
+if(isset($_POST['add_submit'])) {
+    $product = Product::createInstance(null,"a","e",null);
+    $product->setName($_POST['name']);
+    $product->setDescription($_POST['description']);
+    $product->setPrice($_POST['price']);
     $productimplementation  = new ProductImplementation();
-    $productimplementation->save($name, $description, $price);
+    $productimplementation->save($product);
 }
 
-if (isset($_POST['submit'])) {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
+if (isset($_POST['edit_submit'])) {
+
+    $product = Product::createInstance(null,"a","e",null);
+    $product->setId($_POST["id"]);
+    $product->setName($_POST['name']);
+    $product->setDescription($_POST['description']);
+    $product->setPrice($_POST['price']);
+
     $productimplementation  = new ProductImplementation();
-    $productimplementation->edit($id, $name, $description, $price);
+    $productimplementation->edit($product);
 }

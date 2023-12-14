@@ -15,6 +15,7 @@ if(isset($_GET["id"])) {
 
         if ($result->num_rows === 1) {
             $user = $result->fetch_assoc();
+            $id = $user['id'];
             $name = $user['name'];
             $description = $user['description'];
             $price = $user['price'];
@@ -33,15 +34,18 @@ if(isset($_GET["id"])) {
 <html>
 <head>
     <title>Edit User</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
 </head>
 <body>
 <h1>Edit User</h1>
+
 <form action="../controller/ProductImplementation.php" method="post">
-    <input type="hidden" name="id" value="<?= $id ?>">
-    <input type="text" name="name" placeholder="Name" value="<?= $name ?>">
-    <input type="text" name="description" placeholder="Description" value="<?= $description ?>">
-    <input type="number" name="price" placeholder="Price" value="<?= $price ?>">
-    <button type="submit" name="submit">Save</button>
+    <input type="hidden" name="id" value="<?= $id ?>" />
+    <input type="text" name="name" placeholder="name" value="<?= $name ?>">
+    <input type="text" name="description" placeholder="description" value="<?= $description ?>">
+    <input type="number" name="price" placeholder="price" value="<?= $price ?>">
+    <button type="submit" name="edit_submit">Save</button>
+
 </form>
 </body>
 </html>

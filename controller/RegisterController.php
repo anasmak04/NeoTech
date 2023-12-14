@@ -17,7 +17,6 @@ class RegisterController{
     public function CreateAccount($fullname,$id_role,$username,$password){
 
         $sql = "INSERT INTO `user`(`fullname`, `id_role`,   `username`, `password`) VALUES (?,?,?,?)";
-        $user = User::CreateInstance(null,$fullname,$id_role,$username,$password,null);
         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $this->database->prepare($sql);
 
